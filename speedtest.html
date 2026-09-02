@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Internet Speed Test | Check WiFi & Mobile Data Speed</title>
+    <meta name="description" content="Test your internet download speed in real-time. Fast, free, accurate broad-band and mobile data speed test tool working globally.">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --background: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--background); margin: 0; padding: 20px; color: var(--text); line-height: 1.6; }
+        
+        .top-bar { max-width: 650px; margin: 10px auto; display: flex; justify-content: space-between; align-items: center; min-height: 42px; }
+        .back-btn { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; }
+        .back-btn:hover { text-decoration: underline; }
+        
+        .container { max-width: 650px; margin: 20px auto; background: var(--card); padding: 35px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border: 1px solid var(--border); text-align: center; }
+        h1 { color: #0f172a; margin-top: 0; margin-bottom: 10px; font-size: 28px; font-weight: 700; }
+        
+        /* Speedometer UI */
+        .speed-gauge { width: 220px; height: 220px; border-radius: 50%; border: 10px solid var(--border); margin: 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; transition: all 0.3s ease; }
+        .speed-gauge.running { border-color: var(--primary); box-shadow: 0 0 20px rgba(37, 99, 235, 0.2); }
+        .speed-value { font-size: 54px; font-weight: 700; color: #0f172a; line-height: 1; }
+        .speed-unit { font-size: 16px; color: #64748b; font-weight: 600; margin-top: 8px; letter-spacing: 0.05em; }
+        
+        .btn-main { width: 100%; max-width: 220px; background: var(--primary); color: white; border: none; padding: 15px 30px; font-size: 18px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s; margin-top: 10px; box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2); }
+        .btn-main:hover { background: var(--primary-hover); }
+        .btn-main:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; }
+        
+        /* Ad Placement Area */
+        .ad-slot { max-width: 650px; margin: 30px auto; text-align: center; padding: 15px; border: 2px dashed #cbd5e1; background: #fff; border-radius: 8px; }
+        .ad-slot small { color: #94a3b8; display: block; margin-bottom: 8px; font-weight: 600; font-size: 11px; text-transform: uppercase; }
+        .ad-slot img { max-width: 100%; height: auto; border-radius: 4px; }
+        
+        /* SEO Content styling */
+        .seo-content { max-width: 650px; margin: 50px auto; border-top: 1px solid var(--border); padding-top: 35px; text-align: left; }
+        .seo-content h2 { color: #0f172a; font-size: 22px; margin-top: 25px; }
+        .seo-content p { color: #475569; margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <!-- Clean navigation linking back to your main calculator page -->
+        <a href="index.html" class="back-btn">← Back to Crypto Calculator</a>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <div class="container">
+        <h1>Internet Speed Test</h1>
+        <p style="color: #64748b; margin-bottom: 0;">Test your network performance in real-time</p>
+        
+        <div class="speed-gauge" id="gauge">
+            <div class="speed-value" id="speedLabel">0.0</div>
+            <div class="speed-unit">Mbps</div>
+        </div>
+
+        <button class="btn-main" id="startBtn" onclick="startSpeedTest()">Run Test</button>
+    </div>
+
+    <!-- 💰 TARGETED AFFILIATE PLACEHOLDER (Perfect for high-payout hosting links!) -->
+    <div class="ad-slot">
+        <small>Sponsored Link / Advertisement</small>
+        <a href="https://hostinger.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://placeholder.com" alt="Affiliate Offer">
+        </a>
+    </div>
+
+    <!-- 🚀 STRUCTURED SEO TEXT LAYER -->
+    <div class="seo-content">
+        <h2>How to Analyze Your Network Performance</h2>
+        <p>Your network performance moves based on connection latency, server bandwidth capacities, and regional ISP routing protocols. This tool measures download capacity by processing how fast an independent global data packet transfers directly to your local device matrix.</p>
+        
+        <h2>Frequently Asked Questions</h2>
+        <h3>What is a good internet download speed?</h3>
+        <p>A speed between 25 Mbps and 50 Mbps is ideal for standard high-definition streaming, remote operations, and browsing. For heavy 4K streaming or live cryptocurrency day trading, connection levels above 100 Mbps are highly recommended to ensure zero data lag.</p>
+    </div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://google.com"></script>
+
+    <script>
+        function startSpeedTest() {
+            const startBtn = document.getElementById('startBtn');
+            const speedLabel = document.getElementById('speedLabel');
+            const gauge = document.getElementById('gauge');
+            
+            startBtn.disabled = true;
+            startBtn.innerText = "Testing...";
+            gauge.classList.add('running');
+            speedLabel.innerText = "0.0";
+            
+            // Highly stable test asset hosted on global public network clusters to avoid local storage caching
+            const imageAddr = "https://wikimedia.org" + new Date().getTime();
+            const downloadSize = 3676233; // Exact file size in Bytes
+            
+            let startTime = new Date().getTime();
+            const download = new Image();
+            
+            download.src = imageAddr;
+            
+            download.onload = function () {
+                const endTime = new Date().getTime();
+                const duration = (endTime - startTime) / 1000;
+                
+                // Pure connection speed calculations
+                const bitsLoaded = downloadSize * 8;
+                const speedBps = bitsLoaded / duration;
+                const speedKbps = speedBps / 1024;
+                const speedMbps = (speedKbps / 1024).toFixed(1);
+                
+                // Smooth calculation value roll animation
+                let count = 0;
+                const targetSpeed = parseFloat(speedMbps);
+                const step = targetSpeed / 20;
+                
+                const timer = setInterval(() => {
+                    count += step;
+                    if (count >= targetSpeed) {
+                        clearInterval(timer);
+                        speedLabel.innerText = targetSpeed.toFixed(1);
+                        completeTest();
+                    } else {
+                        speedLabel.innerText = count.toFixed(1);
+                    }
+                }, 40);
+            }
+            
+            download.onerror = function () {
+                speedLabel.innerText = "Error";
+                completeTest();
+            }
+            
+            function completeTest() {
+                startBtn.disabled = false;
+                startBtn.innerText = "Run Test";
+                gauge.classList.remove('running');
+            }
+        }
+    </script>
+</body>
+</html>
