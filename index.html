@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<!-- Primary Search Engine Optimization (SEO) Metadata -->
+<title>Live Crypto Profit Calculator | Free Multi-Currency ROI Tool</title>
+<meta name="description" content="Calculate real-time cryptocurrency investment profits, losses, and ROI percentages. Tracks gains across global fiat options with integrated fee parameters.">
+<meta name="keywords" content="crypto profit calculator, crypto ROI calculator, free bitcoin calculator, live crypto profit tracker, calculate crypto earnings">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook SEO Matrix -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://github.io">
+<meta property="og:title" content="Live Crypto Profit Calculator | Free ROI Tool">
+<meta property="og:description" content="Monitor your crypto assets with precision. Free worldwide tracking utility factoring platform execution fees.">
+
+<!-- Structured Application Schema JSON-LD (Forces Google App Rankings) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Live Crypto Profit Calculator",
+  "url": "https://github.io",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "features": "Real-time cryptocurrency price tracking, custom entry fee calculations, percentage ROI matrix"
+}
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Live Crypto Profit Calculator | Multi-Currency ROI Tool</title>
@@ -387,12 +413,13 @@
             resultBox.className = netProfit >= 0 ? 'result-box profit' : 'result-box loss';
             resultBox.style.display = 'block';
 
-            resultBox.innerHTML = `
-                <div class="result-row"><span>Tokens Acquired:</span> <span>${coinsOwned.toFixed(6)}</span></div>
-                <div class="result-row"><span>Gross Asset Return:</span> <span>${symbol} ${grossReturn.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span></div>
-                <div class="result-row"><span>Percentage ROI:</span> <span>${roi.toFixed(2)}%</span></div>
-                <div class="result-row"><span>${netProfit >= 0 ? 'Net Investment Gains:' : 'Net Market Loss:'}</span> <span>${symbol} ${Math.abs(netProfit).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span></div>
-            `;
+           // Force the calculator to display hyper-precise token yields for tiny investments
+resultBox.innerHTML = `
+    <div class="result-row"><span>Tokens Acquired:</span> <span>${coinsOwned.toFixed(8)}</span></div>
+    <div class="result-row"><span>Gross Asset Return:</span> <span>${symbol} ${grossReturn.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 8})}</span></div>
+    <div class="result-row"><span>Percentage ROI:</span> <span>${roi.toFixed(2)}%</span></div>
+    <div class="result-row"><span>${netProfit >= 0 ? 'Net Investment Gains:' : 'Net Market Loss:'}</span> <span>${symbol} ${Math.abs(netProfit).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span></div>
+`;
         }
 
         fetchLivePrices();
