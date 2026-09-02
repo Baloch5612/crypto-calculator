@@ -280,31 +280,46 @@
         let globalLivePrice = 0;
 
         async function fetchLivePrices() {
-            const crypto = document.getElementById('cryptoSelect').value;
-            const currency = document.getElementById('countrySelect').value;
-            
-            const dropdown = document.getElementById('countrySelect');
-            const selectedOption = dropdown.options[dropdown.selectedIndex]; 
-            const symbol = selectedOption.getAttribute('data-symbol');
-            
-            document.getElementById('livePriceLabel').innerText = "Updating...";
+    const crypto = document.getElementById('cryptoSelect').value;
+    const currency = document.getElementById('countrySelect').value;
 
-            try {
-                const response = await fetch(`https://cryptocompare.com{crypto}&tsyms=${currency}`);
-                const data = await response.json();
-                
-                globalLivePrice = data[currency];
-                if(globalLivePrice) {
-                    document.getElementById('livePriceLabel').innerText = `${symbol} ${globalLivePrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 4})}`;
-                } else {
-                    document.getElementById('livePriceLabel').innerText = "Asset pair unsupported.";
-                }
-            } catch (error) {
-                document.getElementById('livePriceLabel').innerText = "API link offline. Enter values manually.";
-                console.error("Data tracking break:", error);
-            }
+    const dropdown = document.getElementById('countrySelect');
+    const selectedOption = dropdown.options[dropdown.selectedIndex];
+    const symbol = selectedOption.getAttribute('data-symbol');
+
+    document.getElementById('livePriceLabel').innerText = "Updating...";
+
+    try {
+        const response = await fetch(
+            `https://min-api.cryptocompare.com/data/price?fsym=${crypto}&tsyms=${currency}`
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
         }
 
+        const data = await response.json();
+
+        globalLivePrice = data[currency];
+
+        if (globalLivePrice) {
+            document.getElementById('livePriceLabel').innerText =
+                `${symbol} ${globalLivePrice.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 4
+                })}`;
+        } else {
+            document.getElementById('livePriceLabel').innerText =
+                "Asset pair unsupported.";
+        }
+
+    } catch (error) {
+        document.getElementById('livePriceLabel').innerText =
+            "API link offline. Enter values manually.";
+
+        console.error("Data tracking break:", error);
+    }
+}
         function useCurrentPrice() {
             if(globalLivePrice > 0) {
                 document.getElementById('buyPrice').value = globalLivePrice;
