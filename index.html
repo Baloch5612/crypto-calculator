@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Live Crypto Profit Calculator | Multi-Currency ROI Tool</title>
+    <meta name="description" content="Calculate real-time cryptocurrency investments, capital returns, and ROI percentages across all world currencies instantly.">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --background: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--background); margin: 0; padding: 20px; color: var(--text); line-height: 1.6; }
+        .top-bar { max-width: 700px; margin: 10px auto; display: flex; justify-content: flex-end; align-items: center; min-height: 42px; }
+        .container { max-width: 700px; margin: 20px auto; background: var(--card); padding: 35px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+        h1 { color: #0f172a; text-align: center; margin-top: 0; margin-bottom: 25px; font-size: 28px; font-weight: 700; }
+        .form-group { margin-bottom: 22px; }
+        label { font-weight: 600; display: block; margin-bottom: 8px; font-size: 14px; color: #475569; }
+        select, input[type="number"] { width: 100%; padding: 12px 14px; box-sizing: border-box; border: 1px solid var(--border); border-radius: 8px; font-size: 16px; background-color: white; color: var(--text); }
+        input[type="number"]:focus, select:focus { outline: none; border-color: var(--primary); }
+        .live-status { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 14px; border-radius: 8px; font-size: 15px; margin-bottom: 22px; display: flex; justify-content: space-between; align-items: center; }
+        .price-badge { font-weight: 700; background: #3b82f6; color: white; padding: 5px 12px; border-radius: 6px; }
+        .btn-inline { width: auto; background: #64748b; color: white; border: none; padding: 6px 14px; font-size: 13px; border-radius: 6px; cursor: pointer; margin-top: 8px; }
+        .btn-main { width: 100%; background: var(--primary); color: white; border: none; padding: 16px; font-size: 17px; font-weight: 600; border-radius: 8px; cursor: pointer; margin-top: 12px; }
+        .btn-main:hover { background: var(--primary-hover); }
+        .result-box { margin-top: 30px; padding: 22px; border-radius: 8px; font-size: 16px; display: none; }
+        .profit { background-color: #f0fdf4; border-left: 6px solid var(--success); color: #14532d; }
+        .loss { background-color: #fef2f2; border-left: 6px solid var(--danger); color: #7f1d1d; }
+        .result-row { display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px dashed rgba(0,0,0,0.05); }
+        .result-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; font-size: 20px; font-weight: 700; margin-top: 5px; }
+        .ad-slot { max-width: 700px; margin: 30px auto; text-align: center; padding: 15px; border: 2px dashed #cbd5e1; background: #fff; border-radius: 8px; }
+        .ad-slot small { color: #94a3b8; display: block; margin-bottom: 8px; font-weight: 600; font-size: 11px; text-transform: uppercase; }
+        .seo-content { max-width: 700px; margin: 60px auto; border-top: 1px solid var(--border); padding-top: 35px; }
+        code { background: #f1f5f9; padding: 3px 6px; border-radius: 4px; font-family: monospace; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div id="google_translate_element"></div>
+    </div>
+
+    <div class="container">
+        <h1>Live Crypto Profit Calculator</h1>
+        
+        <div class="form-group">
+            <label for="countrySelect">Your Region & Currency</label>
+            <select id="countrySelect" onchange="fetchLivePrices()">
+                <option value="AFN" data-symbol="؋">Afghanistan (AFN ؋)</option>
+                <option value="ALL" data-symbol="Lek">Albania (ALL Lek)</option>
+                <option value="DZD" data-symbol="د.ج">Algeria (DZD د.ج)</option>
+                <option value="AOA" data-symbol="Kz">Angola (AOA Kz)</option>
+                <option value="ARS" data-symbol="$">Argentina (ARS $)</option>
+                <option value="AMD" data-symbol="֏">Armenia (AMD ֏)</option>
+                <option value="AUD" data-symbol="A$">Australia (AUD A$)</option>
+                <option value="AWG" data-symbol="ƒ">Aruba (AWG ƒ)</option>
+                <option value="AZN" data-symbol="₼">Azerbaijan (AZN ₼)</option>
+                <option value="BSD" data-symbol="B$">Bahamas (BSD B$)</option>
+                <option value="BHD" data-symbol=".د.ب">Bahrain (BHD .د.ب)</option>
+                <option value="BDT" data-symbol="৳">Bangladesh (BDT ৳)</option>
+                <option value="BBD" data-symbol="Bds$">Barbados (BBD Bds$)</option>
+                <option value="BYN" data-symbol="Br">Belarus (BYN Br)</option>
+                <option value="BZD" data-symbol="BZ$">Belize (BZD BZ$)</option>
+                <option value="BMD" data-symbol="$">Bermuda (BMD $)</option>
+                <option value="BTN" data-symbol="Nu.">Bhutan (BTN Nu.)</option>
+                <option value="BOB" data-symbol="Bs.">Bolivia (BOB Bs.)</option>
+                <option value="BAM" data-symbol="KM">Bosnia & Herzegovina (BAM KM)</option>
+                <option value="BWP" data-symbol="P">Botswana (BWP P)</option>
+                <option value="BRL" data-symbol="R$">Brazil (BRL R$)</option>
+                <option value="BND" data-symbol="B$">Brunei (BND B$)</option>
+                <option value="BGN" data-symbol="лв">Bulgaria (BGN лв)</option>
+                <option value="BIF" data-symbol="FBu">Burundi (BIF FBu)</option>
+                <option value="KHR" data-symbol="៛">Cambodia (KHR ៛)</option>
+                <option value="CAD" data-symbol="C$">Canada (CAD C$)</option>
+                <option value="CVE" data-symbol="Esc">Cape Verde (CVE Esc)</option>
+                <option value="KYD" data-symbol="$">Cayman Islands (KYD $)</option>
+                <option value="CLP" data-symbol="$">Chile (CLP $)</option>
+                <option value="CNY" data-symbol="¥">China (CNY ¥)</option>
+                <option value="COP" data-symbol="$">Colombia (COP $)</option>
+                <option value="KMF" data-symbol="CF">Comoros (KMF CF)</option>
+                <option value="CRC" data-symbol="₡">Costa Rica (CRC ₡)</option>
+                <option value="HRK" data-symbol="kn">Croatia (HRK kn)</option>
+                <option value="CUP" data-symbol="$">Cuba (CUP $)</option>
+                <option value="CZK" data-symbol="Kč">Czech Republic (CZK Kč)</option>
+                <option value="DKK" data-symbol="kr">Denmark (DKK kr)</option>
+                <option value="DJF" data-symbol="Fdj">Djibouti (DJF Fdj)</option>
+                <option value="DOP" data-symbol="RD$">Dominican Republic (DOP RD$)</option>
+                <option value="EGP" data-symbol="E£">Egypt (EGP E£)</option>
+                <option value="ERN" data-symbol="Nfk">Eritrea (ERN Nfk)</option>
+                <option value="ETB" data-symbol="Br">Ethiopia (ETB Br)</option>
+                <option value="EUR" data-symbol="€">European Union (EUR €)</option>
+                <option value="FJD" data-symbol="FJ$">Fiji (FJD FJ$)</option>
+                <option value="GMD" data-symbol="D">Gambia (GMD D)</option>
+                <option value="GEL" data-symbol="₾">Georgia (GEL ₾)</option>
+                <option value="GHS" data-symbol="GH₵">Ghana (GHS GH₵)</option>
+                <option value="GIP" data-symbol="£">Gibraltar (GIP £)</option>
+                <option value="GTQ" data-symbol="Q">Guatemala (GTQ Q)</option>
+                <option value="GNF" data-symbol="FG">Guinea (GNF FG)</option>
+                <option value="GYD" data-symbol="G$">Guyana (GYD G$)</option>
+                <option value="HTG" data-symbol="G">Haiti (HTG G)</option>
+                <option value="HNL" data-symbol="L">Honduras (HNL L)</option>
+                <option value="HKD" data-symbol="HK$">Hong Kong (HKD HK$)</option>
+                <option value="HUF" data-symbol="Ft">Hungary (HUF Ft)</option>
+                <option value="ISK" data-symbol="kr">Iceland (ISK kr)</option>
+                <option value="INR" data-symbol="₹">India (INR ₹)</option>
+                <option value="IDR" data-symbol="Rp">Indonesia (IDR Rp)</option>
+                <option value="IRR" data-symbol="﷼">Iran (IRR ﷼)</option>
+                <option value="IQD" data-symbol="ع.د">Iraq (IQD ع.د)</option>
+                <option value="ILS" data-symbol="₪">Israel (ILS ₪)</option>
+                <option value="JMD" data-symbol="J$">Jamaica (JMD J$)</option>
+                <option value="JPY" data-symbol="¥">Japan (JPY ¥)</option>
+                <option value="JOD" data-symbol="د.ا">Jordan (JOD د.ا)</option>
+                <option value="KZT" data-symbol="₸">Kazakhstan (KZT ₸)</option>
+                <option value="KES" data-symbol="KSh">Kenya (KES KSh)</option>
+                <option value="KWD" data-symbol="د.ك">Kuwait (KWD د.ك)</option>
+                <option value="KGS" data-symbol="сом">Kyrgyzstan (KGS сом)</option>
+                <option value="LAK" data-symbol="₭">Laos (LAK ₭)</option>
+                <option value="LBN" data-symbol="ل.ل">Lebanon (LBN ل.ل)</option>
+                <option value="LSL" data-symbol="M">Lesotho (LSL M)</option>
+                <option value="LRD" data-symbol="L$">Liberia (LRD L$)</option>
+                <option value="LYD" data-symbol="د.ل">Libya (LYD د.ل)</option>
+                <option value="MOP" data-symbol="MOP$">Macau (MOP MOP$)</option>
+                <option value="MKD" data-symbol="ден">Macedonia (MKD ден)</option>
+                <option value="MGA" data-symbol="Ar">Madagascar (MGA Ar)</option>
+                <option value="MWK" data-symbol="MK">Malawi (MWK MK)</option>
+                <option value="MYR" data-symbol="RM">Malaysia (MYR RM)</option>
+                <option value="MVR" data-symbol="Rf">Maldives (MVR Rf)</option>
+                <option value="MRU" data-symbol="UM">Mauritania (MRU UM)</option>
+                <option value="MUR" data-symbol="₨">Mauritius (MUR ₨)</option>
+                <option value="MXN" data-symbol="$">Mexico (MXN $)</option>
+                <option value="MDL" data-symbol="L">Moldova (MDL L)</option>
+                <option value="MNT" data-symbol="₮">Mongolia (MNT ₮)</option>
+                <option value="MAD" data-symbol="د.م.">Morocco (MAD د.م.)</option>
+                <option value="MZN" data-symbol="MT">Mozambique (MZN MT)</option>
+                <option value="MMK" data-symbol="K">Myanmar (MMK K)</option>
+                <option value="NAD" data-symbol="N$">Namibia (NAD N$)</option>
+                <option value="NPR" data-symbol="₨">Nepal (NPR ₨)</option>
+                <option value="ANG" data-symbol="ƒ">Netherlands Antilles (ANG ƒ)</option>
+                <option value="NZD" data-symbol="NZ$">New Zealand (NZD NZ$)</option>
+                <option value="NIO" data-symbol="C$">Nicaragua (NIO C$)</option>
+                <option value="NGN" data-symbol="₦">Nigeria (NGN ₦)</option>
+                <option value="NOK" data-symbol="kr">Norway (NOK kr)</option>
+                <option value="OMR" data-symbol="﷼">Oman (OMR ﷼)</option>
+                <option value="PKR" data-symbol="Rs" selected>Pakistan (PKR Rs)</option>
+                <option value="PAB" data-symbol="B/.">Panama (PAB B/.)</option>
+                <option value="PGK" data-symbol="K">Papua New Guinea (PGK K)</option>
+                <option value="PYG" data-symbol="₲">Paraguay (PYG ₲)</option>
+                <option value="PEN" data-symbol="S/.">Peru (PEN S/.)</option>
+                <option value="PHP" data-symbol="₱">Philippines (PHP ₱)</option>
+                <option value="PLN" data-symbol="zł">Poland (PLN zł)</option>
+                <option value="QAR" data-symbol="﷼">Qatar (QAR ﷼)</option>
+                <option value="RON" data-symbol="lei">Romania (RON lei)</option>
+                <option value="RUB" data-symbol="₽">Russia (RUB ₽)</option>
+                <option value="RWF" data-symbol="FRw">Rwanda (RWF FRw)</option>
+                <option value="SAR" data-symbol="SR">Saudi Arabia (SAR SR)</option>
+                <option value="RSD" data-symbol="дин.">Serbia (RSD дин.)</option>
+                <option value="SGD" data-symbol="S$">Singapore (SGD S$)</option>
+                <option value="SOS" data-symbol="Sh">Somalia (SOS Sh)</option>
+                <option value="ZAR" data-symbol="R">South Africa (ZAR R)</option>
+                <option value="KRW" data-symbol="₩">South Korea (KRW ₩)</option>
+                <option value="LKR" data-symbol="₨">Sri Lanka (LKR ₨)</option>
+                <option value="SDG" data-symbol="ج.س.">Sudan (SDG ج.س.)</option>
+                <option value="SRD" data-symbol="$">Suriname (SRD $)</option>
+                <option value="SZL" data-symbol="L">Swaziland (SZL L)</option>
+                <option value="SEK" data-symbol="kr">Sweden (SEK kr)</option>
+                <option value="CHF" data-symbol="CHF">Switzerland (CHF CHF)</option>
+                <option value="SYP" data-symbol="£">Syria (SYP £)</option>
+                <option value="TWD" data-symbol="NT$">Taiwan (TWD NT$)</option>
+                <option value="TJS" data-symbol="SM">Tajikistan (TJS SM)</option>
+                <option value="TZS" data-symbol="TSh">Tanzania (TZS TSh)</option>
+                <option value="THB" data-symbol="฿">Thailand (THB ฿)</option>
+                <option value="TOP" data-symbol="T$">Tonga (TOP T$)</option>
+		<option value="TTD" data-symbol="TT$">Trinidad & Tobago (TTD TT$)</option>
+                <option value="TND" data-symbol="د.ت">Tunisia (TND د.ت)</option>
+                <option value="TRY" data-symbol="₺">Turkey (TRY ₺)</option>
+                <option value="TMT" data-symbol="T">Turkmenistan (TMT T)</option>
+                <option value="TVD" data-symbol="$">Tuvalu (TVD $)</option>
+                <option value="UGX" data-symbol="USh">Uganda (UGX USh)</option>
+                <option value="UAH" data-symbol="₴">Ukraine (UAH ₴)</option>
+                <option value="AED" data-symbol="د.إ">United Arab Emirates (AED د.إ)</option>
+                <option value="GBP" data-symbol="£">United Kingdom (GBP £)</option>
+                <option value="USD" data-symbol="$">United States (USD $)</option>
+                <option value="UYU" data-symbol="$U">Uruguay (UYU $U)</option>
+                <option value="UZS" data-symbol="so'm">Uzbekistan (UZS so'm)</option>
+                <option value="VUV" data-symbol="Vt">Vanuatu (VUV Vt)</option>
+                <option value="VES" data-symbol="Bs.S">Venezuela (VES Bs.S)</option>
+                <option value="VND" data-symbol="₫">Vietnam (VND ₫)</option>
+                <option value="XPF" data-symbol="₣">CFP Franc (XPF ₣)</option>
+                <option value="YER" data-symbol="﷼">Yemen (YER ﷼)</option>
+                <option value="ZMW" data-symbol="ZK">Zambia (ZMW ZK)</option>
+                <option value="ZWG" data-symbol="ZiG">Zimbabwe (ZWG ZiG)</option>
+</select>
+        </div>        
+<div class="form-group">
+            <label for="cryptoSelect">Select Asset</label>
+            <select id="cryptoSelect" onchange="fetchLivePrices()">
+                <option value="BTC">Bitcoin (BTC)</option>
+                <option value="ETH">Ethereum (ETH)</option>
+                <option value="SOL">Solana (SOL)</option>
+                <option value="BNB">BNB (BNB)</option>
+                <option value="XRP">Ripple (XRP)</option>
+                <option value="ADA">Cardano (ADA)</option>
+                <option value="DOGE">Dogecoin (DOGE)</option>
+            </select>
+        </div>
+
+        <div class="live-status">
+            <span>Current Live Market Value:</span>
+            <span class="price-badge" id="livePriceLabel">Loading live rates...</span>
+        </div>
+
+        <div class="form-group">
+            <label for="investment">Your Investment Capital</label>
+            <input type="number" id="investment" placeholder="How much cash you put in" step="any">
+        </div>
+
+        <div class="form-group">
+            <label for="buyPrice">Buy Price (Per Coin)</label>
+            <input type="number" id="buyPrice" placeholder="Price per coin when bought" step="any">
+            <button type="button" class="btn-inline" onclick="useCurrentPrice()">Use Current Live Price</button>
+        </div>
+
+        <div class="form-group">
+            <label for="sellPrice">Future Sell / Target Exit Price</label>
+            <input type="number" id="sellPrice" placeholder="Target exit value" step="any">
+        </div>
+
+        <div class="form-group">
+            <label for="fees">Total Fees / Commissions (Optional)</label>
+            <input type="number" id="fees" placeholder="0.00" value="0" step="any">
+        </div>
+
+        <button class="btn-main" onclick="calculateCryptoProfit()">Calculate Net Returns</button>
+        
+        <div class="result-box" id="resultBox"></div>
+    </div>
+
+    <div class="ad-slot">
+        <small>Sponsored Link / Advertisement</small>
+        <a href="https://binance.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://placeholder.com" alt="Crypto Ad Slot">
+        </a>
+    </div>
+
+    <div class="seo-content">
+        <h2>How to Calculate Crypto Profits and Losses</h2>
+        <p>Calculating cryptocurrency capital gains requires assessing the difference between your acquisition price and your liquidation price while factoring in transaction costs.</p>
+        
+        <h3>The Math Formula</h3>
+        <p><code>Total Coins Purchased = Investment Amount / Buy Price</code></p>
+        <p><code>Gross Returns = Total Coins Purchased * Sell Price</code></p>
+        <p><code>Net Gains/Losses = Gross Returns - Investment Amount - Total Fees</code></p>
+        <p><code>Return on Investment (ROI) = (Net Gains / Investment Amount) * 100</code></p>
+
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        <h3>How do exchange fees impact net crypto profit?</h3>
+        <p>Trading platforms evaluate variable percentage commissions on executions. Our tracking terminal automatically factors these calculations directly into the final balance array.</p>
+
+        <h3>Why do different country currencies display varying values?</h3>
+        <p>Sovereign currency values move based on distinct global foreign exchange rates. This calculator hooks straight into the CryptoCompare Core Stream to isolate localized price feeds based on regional fiat tickers, ensuring complete precision.</p>
+    </div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://google.com"></script>
+
+    <script>
+        let globalLivePrice = 0;
+
+        async function fetchLivePrices() {
+            const crypto = document.getElementById('cryptoSelect').value;
+            const currency = document.getElementById('countrySelect').value;
+            
+            const dropdown = document.getElementById('countrySelect');
+            const selectedOption = dropdown.options[dropdown.selectedIndex]; 
+            const symbol = selectedOption.getAttribute('data-symbol');
+            
+            document.getElementById('livePriceLabel').innerText = "Updating...";
+
+            try {
+                const response = await fetch(`https://cryptocompare.com{crypto}&tsyms=${currency}`);
+                const data = await response.json();
+                
+                globalLivePrice = data[currency];
+                if(globalLivePrice) {
+                    document.getElementById('livePriceLabel').innerText = `${symbol} ${globalLivePrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 4})}`;
+                } else {
+                    document.getElementById('livePriceLabel').innerText = "Asset pair unsupported.";
+                }
+            } catch (error) {
+                document.getElementById('livePriceLabel').innerText = "API link offline. Enter values manually.";
+                console.error("Data tracking break:", error);
+            }
+        }
+
+        function useCurrentPrice() {
+            if(globalLivePrice > 0) {
+                document.getElementById('buyPrice').value = globalLivePrice;
+            } else {
+                alert("Live market data feed is loading. Please try again in a moment.");
+            }
+        }
+
+        function calculateCryptoProfit() {
+            const investment = parseFloat(document.getElementById('investment').value);
+            const buyPrice = parseFloat(document.getElementById('buyPrice').value);
+            const sellPrice = parseFloat(document.getElementById('sellPrice').value);
+            const fees = parseFloat(document.getElementById('fees').value) || 0;
+            
+            const dropdown = document.getElementById('countrySelect');
+            const selectedOption = dropdown.options[dropdown.selectedIndex]; 
+            const symbol = selectedOption.getAttribute('data-symbol');
+
+            if (isNaN(investment) || isNaN(buyPrice) || isNaN(sellPrice) || investment <= 0 || buyPrice <= 0 || sellPrice <= 0) {
+                alert('Please check your entries. Investment and token values must be positive digits.');
+                return;
+            }
+
+            const coinsOwned = investment / buyPrice;
+            const grossReturn = coinsOwned * sellPrice;
+            const netProfit = grossReturn - investment - fees;
+            const roi = (netProfit / investment) * 100;
+
+            const resultBox = document.getElementById('resultBox');
+            resultBox.className = netProfit >= 0 ? 'result-box profit' : 'result-box loss';
+            resultBox.style.display = 'block';
+
+            resultBox.innerHTML = `
+                <div class="result-row"><span>Tokens Acquired:</span> <span>${coinsOwned.toFixed(6)}</span></div>
+                <div class="result-row"><span>Gross Asset Return:</span> <span>${symbol} ${grossReturn.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span></div>
+                <div class="result-row"><span>Percentage ROI:</span> <span>${roi.toFixed(2)}%</span></div>
+                <div class="result-row"><span>${netProfit >= 0 ? 'Net Investment Gains:' : 'Net Market Loss:'}</span> <span>${symbol} ${Math.abs(netProfit).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span></div>
+            `;
+        }
+
+        fetchLivePrices();
+    </script>
+</body>
