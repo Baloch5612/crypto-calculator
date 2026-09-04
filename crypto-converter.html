@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Currency Converter | Live BTC, ETH & Altcoin Prices</title>
+    <meta name="description" content="Convert between Bitcoin, Ethereum, and major altcoins to USD, EUR, GBP, PKR and more, using live market prices. Free, fast, and updated in real time.">
+    <link rel="canonical" href="https://baloch5612.github.io/crypto-calculator/crypto-converter.html">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Crypto Currency Converter | Live BTC, ETH & Altcoin Prices">
+    <meta property="og:description" content="Convert between Bitcoin, Ethereum, and major altcoins to USD, EUR, GBP, PKR and more, using live market prices.">
+    <meta property="og:url" content="https://baloch5612.github.io/crypto-calculator/crypto-converter.html">
+    <meta property="og:image" content="https://baloch5612.github.io/crypto-calculator/speedtest-preview.png">
+    <meta property="og:site_name" content="Crypto Calculator">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Crypto Currency Converter | Live BTC, ETH & Altcoin Prices">
+    <meta name="twitter:description" content="Convert between Bitcoin, Ethereum, and major altcoins to USD, EUR, GBP, PKR and more, using live market prices.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Crypto Currency Converter",
+      "url": "https://baloch5612.github.io/crypto-calculator/crypto-converter.html",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "description": "Convert between Bitcoin, Ethereum, and major altcoins to USD, EUR, GBP, PKR and more, using live market prices.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --background: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--background); margin: 0; padding: 20px; color: var(--text); line-height: 1.6; }
+
+        .top-bar { max-width: 650px; margin: 10px auto; display: flex; justify-content: space-between; align-items: center; min-height: 42px; }
+        .back-btn { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; }
+        .back-btn:hover { text-decoration: underline; }
+
+        .container { max-width: 650px; margin: 20px auto; background: var(--card); padding: 35px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+        h1 { color: #0f172a; margin-top: 0; margin-bottom: 6px; font-size: 28px; font-weight: 700; text-align: center; }
+        .subtitle { color: #64748b; margin-bottom: 0; text-align: center; }
+
+        .converter-card { margin-top: 30px; }
+        .field-row { display: flex; gap: 10px; align-items: stretch; margin-bottom: 4px; }
+        .field-row input[type="number"] {
+            flex: 1.3; font-size: 22px; font-weight: 700; padding: 14px 16px;
+            border: 1px solid var(--border); border-radius: 10px; color: #0f172a;
+            min-width: 0;
+        }
+        .field-row select {
+            flex: 1; font-size: 16px; font-weight: 600; padding: 14px 10px;
+            border: 1px solid var(--border); border-radius: 10px; background: #fff; color: #0f172a;
+        }
+        .field-label { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; color: #64748b; margin-bottom: 6px; }
+
+        .swap-row { display: flex; justify-content: center; margin: 4px 0; }
+        .swap-btn {
+            background: #eff6ff; border: 1px solid var(--border); color: var(--primary);
+            width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: all 0.15s;
+        }
+        .swap-btn:hover { background: var(--primary); color: #fff; transform: rotate(180deg); }
+
+        .rate-note { text-align: center; color: #64748b; font-size: 13px; margin-top: 18px; min-height: 18px; }
+        .rate-note.error { color: #dc2626; font-weight: 600; }
+        .attribution { text-align: center; color: #94a3b8; font-size: 11px; margin-top: 6px; }
+
+        .refresh-btn {
+            display: block; margin: 18px auto 0; background: var(--primary); color: white; border: none;
+            padding: 12px 26px; font-size: 15px; font-weight: 600; border-radius: 8px; cursor: pointer;
+        }
+        .refresh-btn:hover { background: var(--primary-hover); }
+        .refresh-btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+        .disclaimer { max-width: 650px; margin: 18px auto 0; font-size: 12px; color: #94a3b8; text-align: center; }
+
+        .ad-slot { max-width: 650px; margin: 30px auto; text-align: center; padding: 15px; border: 2px dashed #cbd5e1; background: #fff; border-radius: 8px; }
+        .ad-slot small { color: #94a3b8; display: block; margin-bottom: 8px; font-weight: 600; font-size: 11px; text-transform: uppercase; }
+        .ad-slot img { max-width: 100%; height: auto; border-radius: 4px; }
+
+        .seo-content { max-width: 650px; margin: 50px auto; border-top: 1px solid var(--border); padding-top: 35px; text-align: left; }
+        .seo-content h2 { color: #0f172a; font-size: 22px; margin-top: 25px; }
+        .seo-content p { color: #475569; margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="index.html" class="back-btn">← Back to Crypto Calculator</a>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <div class="container">
+        <h1>Crypto Currency Converter</h1>
+        <p class="subtitle">Live rates for Bitcoin, Ethereum, and major altcoins</p>
+
+        <div class="converter-card">
+            <div class="field-label">Amount</div>
+            <div class="field-row">
+                <input type="number" id="amountInput" value="1" min="0" step="any">
+                <select id="fromSelect"></select>
+            </div>
+
+            <div class="swap-row">
+                <button class="swap-btn" id="swapBtn" title="Swap" aria-label="Swap currencies">⇅</button>
+            </div>
+
+            <div class="field-label">Converted amount</div>
+            <div class="field-row">
+                <input type="number" id="resultInput" value="0" readonly>
+                <select id="toSelect"></select>
+            </div>
+
+            <div class="rate-note" id="rateNote">Loading live rates…</div>
+            <div class="attribution">Rates powered by CoinGecko</div>
+
+            <button class="refresh-btn" id="refreshBtn">Refresh Rates</button>
+        </div>
+    </div>
+
+    <p class="disclaimer">Prices are for informational purposes only and may be delayed. This is not financial advice — always confirm rates on your exchange before trading.</p>
+
+    <div class="ad-slot">
+        <small>Sponsored Link / Advertisement</small>
+        <a href="https://hostinger.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://placehold.co/600x150?text=Ad+Placeholder" alt="Affiliate Offer">
+        </a>
+    </div>
+
+    <div class="seo-content">
+        <h2>How This Converter Works</h2>
+        <p>This tool pulls live market prices and lets you convert between major cryptocurrencies and fiat currencies instantly. Pick what you're converting from and to, enter an amount, and the result updates automatically using current exchange rates.</p>
+
+        <h2>Frequently Asked Questions</h2>
+        <h3>How often do the rates update?</h3>
+        <p>Rates are fetched live each time you load the page or press Refresh Rates. Crypto prices can move quickly, so always refresh before relying on a number for a real transaction.</p>
+        <h3>Can I convert between two cryptocurrencies?</h3>
+        <p>Yes. Choose any two assets from the dropdowns, including two different coins — the converter calculates the exchange rate between them automatically using their current USD prices.</p>
+        <h3>Is this the same rate I'll get on an exchange?</h3>
+        <p>This shows the underlying market price, not a specific exchange's buy or sell price. Actual trades usually include a spread and trading fees, so the amount you receive on an exchange will be slightly different.</p>
+    </div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+
+    <script>
+        const COINS = [
+            { id: 'bitcoin', symbol: 'BTC', name: 'Bitcoin' },
+            { id: 'ethereum', symbol: 'ETH', name: 'Ethereum' },
+            { id: 'tether', symbol: 'USDT', name: 'Tether' },
+            { id: 'binancecoin', symbol: 'BNB', name: 'BNB' },
+            { id: 'solana', symbol: 'SOL', name: 'Solana' },
+            { id: 'ripple', symbol: 'XRP', name: 'XRP' },
+            { id: 'usd-coin', symbol: 'USDC', name: 'USD Coin' },
+            { id: 'cardano', symbol: 'ADA', name: 'Cardano' },
+            { id: 'dogecoin', symbol: 'DOGE', name: 'Dogecoin' },
+            { id: 'polkadot', symbol: 'DOT', name: 'Polkadot' },
+            { id: 'tron', symbol: 'TRX', name: 'TRON' },
+            { id: 'litecoin', symbol: 'LTC', name: 'Litecoin' }
+        ];
+        const FIATS = ['usd', 'eur', 'gbp', 'pkr', 'inr', 'aed'];
+
+        let priceData = null; // priceData[coinId][fiat] = price
+
+        function populateSelects() {
+            const fromSelect = document.getElementById('fromSelect');
+            const toSelect = document.getElementById('toSelect');
+
+            const coinGroup = document.createElement('optgroup');
+            coinGroup.label = 'Cryptocurrencies';
+            const fiatGroup = document.createElement('optgroup');
+            fiatGroup.label = 'Fiat Currencies';
+
+            COINS.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = 'coin:' + c.id;
+                opt.textContent = `${c.symbol} — ${c.name}`;
+                coinGroup.appendChild(opt);
+            });
+            FIATS.forEach(f => {
+                const opt = document.createElement('option');
+                opt.value = 'fiat:' + f;
+                opt.textContent = f.toUpperCase();
+                fiatGroup.appendChild(opt);
+            });
+
+            [fromSelect, toSelect].forEach(sel => {
+                sel.appendChild(coinGroup.cloneNode(true));
+                sel.appendChild(fiatGroup.cloneNode(true));
+            });
+
+            fromSelect.value = 'coin:bitcoin';
+            toSelect.value = 'fiat:usd';
+        }
+
+        async function fetchPrices() {
+            const rateNote = document.getElementById('rateNote');
+            const refreshBtn = document.getElementById('refreshBtn');
+            refreshBtn.disabled = true;
+            rateNote.classList.remove('error');
+            rateNote.innerText = 'Loading live rates…';
+
+            try {
+                const ids = COINS.map(c => c.id).join(',');
+                const vs = FIATS.join(',');
+                const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=${vs}`;
+
+                const response = await fetch(url, { cache: 'no-store' });
+                if (!response.ok) throw new Error(`Rate request failed: ${response.status}`);
+
+                const data = await response.json();
+
+                // Confirm every coin actually came back with data before trusting it.
+                for (const c of COINS) {
+                    if (!data[c.id] || typeof data[c.id].usd !== 'number') {
+                        throw new Error(`Missing price data for ${c.symbol}`);
+                    }
+                }
+
+                priceData = data;
+                const stamp = new Date().toLocaleTimeString();
+                rateNote.innerText = `Rates updated ${stamp}`;
+                convert();
+
+            } catch (error) {
+                console.error('Price fetch failed:', error);
+                priceData = null;
+                rateNote.classList.add('error');
+                rateNote.innerText = error.message || 'Could not load rates — try refreshing.';
+            } finally {
+                refreshBtn.disabled = false;
+            }
+        }
+
+        function parseSelection(value) {
+            const [type, id] = value.split(':');
+            return { type, id };
+        }
+
+        function convert() {
+            const resultInput = document.getElementById('resultInput');
+            const rateNote = document.getElementById('rateNote');
+            if (!priceData) return;
+
+            const amount = parseFloat(document.getElementById('amountInput').value);
+            const from = parseSelection(document.getElementById('fromSelect').value);
+            const to = parseSelection(document.getElementById('toSelect').value);
+
+            if (isNaN(amount)) {
+                resultInput.value = '0';
+                return;
+            }
+
+            if (from.type === 'fiat' && to.type === 'fiat') {
+                rateNote.classList.add('error');
+                rateNote.innerText = 'Choose at least one cryptocurrency to convert.';
+                resultInput.value = '—';
+                return;
+            }
+            rateNote.classList.remove('error');
+
+            let result;
+            if (from.type === 'coin' && to.type === 'fiat') {
+                result = amount * priceData[from.id][to.id];
+            } else if (from.type === 'fiat' && to.type === 'coin') {
+                result = amount / priceData[to.id][from.id];
+            } else {
+                // coin -> coin, pivot through USD
+                result = amount * priceData[from.id].usd / priceData[to.id].usd;
+            }
+
+            resultInput.value = formatResult(result);
+        }
+
+        function formatResult(n) {
+            if (!isFinite(n)) return '0';
+            if (n === 0) return '0';
+            const abs = Math.abs(n);
+            const decimals = abs >= 1 ? 2 : abs >= 0.01 ? 6 : 10;
+            return n.toFixed(decimals).replace(/0+$/, '').replace(/\.$/, '');
+        }
+
+        document.getElementById('swapBtn').addEventListener('click', () => {
+            const fromSelect = document.getElementById('fromSelect');
+            const toSelect = document.getElementById('toSelect');
+            const tmp = fromSelect.value;
+            fromSelect.value = toSelect.value;
+            toSelect.value = tmp;
+            convert();
+        });
+
+        document.getElementById('amountInput').addEventListener('input', convert);
+        document.getElementById('fromSelect').addEventListener('change', convert);
+        document.getElementById('toSelect').addEventListener('change', convert);
+        document.getElementById('refreshBtn').addEventListener('click', fetchPrices);
+
+        populateSelects();
+        fetchPrices();
+    </script>
+</body>
+</html>
