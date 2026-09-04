@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Calculate Crypto Profit and Loss (Beginner's Guide)</title>
+    <meta name="description" content="Learn how to calculate crypto profit and loss step by step, including cost basis, realized vs unrealized gains, fees, and common mistakes to avoid.">
+    <link rel="canonical" href="https://baloch5612.github.io/crypto-calculator/how-to-calculate-crypto-profit.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to Calculate Crypto Profit and Loss (Beginner's Guide)">
+    <meta property="og:description" content="Learn how to calculate crypto profit and loss step by step, including cost basis, realized vs unrealized gains, fees, and common mistakes to avoid.">
+    <meta property="og:url" content="https://baloch5612.github.io/crypto-calculator/how-to-calculate-crypto-profit.html">
+    <meta property="og:site_name" content="Crypto Calculator">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Calculate Crypto Profit and Loss (Beginner's Guide)">
+    <meta name="twitter:description" content="Learn how to calculate crypto profit and loss step by step, including cost basis, realized vs unrealized gains, fees, and common mistakes to avoid.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to Calculate Crypto Profit and Loss (Beginner's Guide)",
+      "description": "Learn how to calculate crypto profit and loss step by step, including cost basis, realized vs unrealized gains, fees, and common mistakes to avoid.",
+      "url": "https://baloch5612.github.io/crypto-calculator/how-to-calculate-crypto-profit.html",
+      "mainEntityOfPage": "https://baloch5612.github.io/crypto-calculator/how-to-calculate-crypto-profit.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is cost basis in crypto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cost basis is the total amount you originally paid to acquire a cryptocurrency, including the purchase price and any transaction fees. It is the starting point for every profit or loss calculation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between realized and unrealized gains?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An unrealized gain or loss is a paper profit or loss on coins you still hold, based on the current market price. A realized gain or loss only happens once you actually sell, trade, or spend the coin, locking in the result."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do transaction fees affect my crypto profit calculation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Fees paid when buying should be added to your cost basis, and fees paid when selling should be subtracted from your proceeds. Ignoring fees makes your calculated profit look higher than it actually is."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --background: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--background); margin: 0; padding: 20px; color: var(--text); line-height: 1.7; }
+
+        .top-bar { max-width: 700px; margin: 10px auto; display: flex; justify-content: space-between; align-items: center; min-height: 42px; }
+        .back-btn { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; }
+        .back-btn:hover { text-decoration: underline; }
+
+        article.container { max-width: 700px; margin: 20px auto; background: var(--card); padding: 40px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+        h1 { color: #0f172a; margin-top: 0; font-size: 30px; font-weight: 800; line-height: 1.25; }
+        .byline { color: #64748b; font-size: 13px; margin-bottom: 30px; }
+        h2 { color: #0f172a; font-size: 21px; font-weight: 700; margin-top: 34px; }
+        h3 { color: #0f172a; font-size: 17px; font-weight: 700; margin-top: 22px; }
+        p { color: #334155; margin-bottom: 14px; }
+        ul, ol { color: #334155; margin-bottom: 14px; padding-left: 22px; }
+        li { margin-bottom: 6px; }
+        .example-box { background: #f1f5f9; border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 18px 0; }
+        .example-box p:last-child { margin-bottom: 0; }
+        .formula { background: #eff6ff; border-left: 4px solid var(--primary); padding: 12px 16px; margin: 16px 0; font-weight: 600; color: #1e3a8a; border-radius: 0 8px 8px 0; }
+
+        .cta-row { display: flex; gap: 12px; margin: 30px 0; flex-wrap: wrap; }
+        .cta-btn { flex: 1; min-width: 200px; text-align: center; text-decoration: none; background: var(--primary); color: #fff; padding: 14px 18px; border-radius: 8px; font-weight: 600; font-size: 15px; }
+        .cta-btn:hover { background: var(--primary-hover); }
+        .cta-btn.secondary { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
+        .cta-btn.secondary:hover { background: #eff6ff; }
+
+        .disclaimer { max-width: 700px; margin: 18px auto 0; font-size: 12px; color: #94a3b8; text-align: center; }
+
+        .ad-slot { max-width: 700px; margin: 30px auto; text-align: center; padding: 15px; border: 2px dashed #cbd5e1; background: #fff; border-radius: 8px; }
+        .ad-slot small { color: #94a3b8; display: block; margin-bottom: 8px; font-weight: 600; font-size: 11px; text-transform: uppercase; }
+        .ad-slot img { max-width: 100%; height: auto; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="index.html" class="back-btn">← Back to Crypto Calculator</a>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <article class="container">
+        <h1>How to Calculate Crypto Profit and Loss (Beginner's Guide)</h1>
+        <p class="byline">A practical walkthrough of cost basis, realized vs. unrealized gains, and the fee mistakes that quietly wreck your numbers.</p>
+
+        <p>Figuring out whether you've actually made money on crypto sounds simple — buy low, sell high, subtract one from the other. In practice, most people get their own profit numbers wrong, usually by forgetting fees, mixing up realized and unrealized gains, or losing track of which coins came from which purchase. This guide walks through the actual calculation, step by step.</p>
+
+        <h2>1. Start with your cost basis</h2>
+        <p>Your cost basis is the true cost of acquiring a coin — not just the sticker price, but the sticker price plus whatever you paid in fees to get it. If you bought 0.1 BTC for $6,000 and paid a $30 exchange fee, your cost basis isn't $6,000. It's $6,030.</p>
+        <div class="formula">Cost Basis = Purchase Price + Buying Fees</div>
+        <p>This matters because skipping the fee step is the single most common way people overstate their profit.</p>
+
+        <h2>2. Understand realized vs. unrealized gains</h2>
+        <p>This is the distinction that trips up the most beginners:</p>
+        <ul>
+            <li><strong>Unrealized gain/loss</strong> — the paper value of coins you still hold, based on today's price. It's real information, but it isn't locked in. The price can move before you sell.</li>
+            <li><strong>Realized gain/loss</strong> — the actual result once you sell, trade, or spend the coin. This is the number that counts for your actual returns — and, depending on where you live, the number that may be relevant for taxes.</li>
+        </ul>
+        <p>A portfolio can look great on paper (large unrealized gains) while you've realized nothing at all, because you haven't sold anything yet.</p>
+
+        <h2>3. The core profit formula</h2>
+        <div class="formula">Profit or Loss = Sale Proceeds − Cost Basis</div>
+        <p>Where Sale Proceeds is what you actually received after subtracting the fee you paid to sell.</p>
+
+        <div class="example-box">
+            <p><strong>Worked example:</strong></p>
+            <p>You buy 0.1 BTC for $6,000, paying a $30 fee. Cost basis: $6,030.</p>
+            <p>Later, you sell that 0.1 BTC for $8,000, paying a $40 fee. Sale proceeds: $7,960.</p>
+            <p>Profit = $7,960 − $6,030 = <strong>$1,930</strong> — not the $2,000 you'd get by ignoring fees entirely.</p>
+        </div>
+
+        <h2>4. If you bought at different times, decide how you'll match purchases to sales</h2>
+        <p>If you bought Bitcoin three separate times at three different prices, and then sell only part of your holdings, which purchase does that sale "belong to"? A few common methods:</p>
+        <ul>
+            <li><strong>FIFO (First In, First Out)</strong> — the oldest coins you bought are treated as the first ones sold. The most common default method.</li>
+            <li><strong>LIFO (Last In, First Out)</strong> — the most recently bought coins are treated as sold first.</li>
+            <li><strong>Specific identification</strong> — you choose exactly which purchase lot a sale comes from, if your exchange or records let you track it precisely.</li>
+        </ul>
+        <p>The method you use can noticeably change your calculated profit, especially if prices moved a lot between purchases. If this applies to your tax situation, this is worth getting right rather than guessing — see the note below.</p>
+
+        <h2>5. Common mistakes that throw off the numbers</h2>
+        <h3>Forgetting fees on both sides</h3>
+        <p>Both the buy fee and the sell fee reduce your real profit. Missing either one inflates your result.</p>
+        <h3>Confusing coin-to-coin trades with cashing out</h3>
+        <p>Trading ETH for SOL is still a disposal of ETH — it can trigger a realized gain or loss on the ETH side, even though you never touched fiat currency.</p>
+        <h3>Mixing up unrealized gains with actual returns</h3>
+        <p>"I'm up 40%" only means something once you've sold. Until then, it's a snapshot, not a result.</p>
+        <h3>Not tracking cost basis per purchase</h3>
+        <p>If you buy the same coin repeatedly at different prices and don't track each purchase separately, you can't accurately calculate what a partial sale actually cost you.</p>
+
+        <h2>Try it yourself</h2>
+        <p>Rather than tracking this by hand, you can plug your own numbers into the calculator and converter on this site to see realized profit and live conversion values instantly.</p>
+
+        <div class="cta-row">
+            <a href="index.html" class="cta-btn">Try the Crypto Profit Calculator</a>
+            <a href="crypto-converter.html" class="cta-btn secondary">Try the Currency Converter</a>
+        </div>
+
+        <h2>Frequently Asked Questions</h2>
+        <h3>What is cost basis in crypto?</h3>
+        <p>Cost basis is the total amount you originally paid to acquire a cryptocurrency, including the purchase price and any transaction fees. It's the starting point for every profit or loss calculation.</p>
+        <h3>What is the difference between realized and unrealized gains?</h3>
+        <p>An unrealized gain or loss is a paper profit or loss on coins you still hold, based on the current market price. A realized gain or loss only happens once you actually sell, trade, or spend the coin, locking in the result.</p>
+        <h3>Do transaction fees affect my crypto profit calculation?</h3>
+        <p>Yes. Fees paid when buying should be added to your cost basis, and fees paid when selling should be subtracted from your proceeds. Ignoring fees makes your calculated profit look higher than it actually is.</p>
+    </article>
+
+    <p class="disclaimer">This article is for general educational purposes only and is not financial or tax advice. Tax treatment of crypto gains varies by country — consult a qualified tax professional for guidance specific to your situation.</p>
+
+    <div class="ad-slot">
+        <small>Sponsored Link / Advertisement</small>
+        <a href="https://hostinger.com" target="_blank" rel="noopener noreferrer">
+            <img src="https://placehold.co/600x150?text=Ad+Placeholder" alt="Affiliate Offer">
+        </a>
+    </div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+</body>
+</html>
