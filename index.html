@@ -67,7 +67,7 @@
     </style>
 </head>
 <body>
-
+<a href="crypto-converter.html">Currency Converter</a>
     <div class="top-bar">
         <div id="google_translate_element"></div>
     </div>
@@ -420,6 +420,7 @@ resultBox.innerHTML = `
     <div class="result-row"><span>Percentage ROI:</span> <span>${roi.toFixed(2)}%</span></div>
     <div class="result-row"><span>${netProfit >= 0 ? 'Net Investment Gains:' : 'Net Market Loss:'}</span> <span>${symbol} ${Math.abs(netProfit).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span></div>
 `;
+			// Add link to crypto converter
         }
 
         fetchLivePrices();
